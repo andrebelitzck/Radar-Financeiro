@@ -28,17 +28,20 @@ CORS_ORIGINS=
 
 ## 3. Publicar em host de teste
 
+Use o plano gratuito disponível, se houver, ou um ambiente de teste de baixo custo.
+
 ### Opção Docker
 
 - build da imagem usando o `Dockerfile`
 - definir a variável `PORT` do host
-- iniciar com `uvicorn main:app --host 0.0.0.0 --port $PORT`
+- start command: `python -m uvicorn main:app --host 0.0.0.0 --port $PORT`
 
 ### Opção Heroku/Render-like
 
 - usar o `Procfile`
 - configurar as variáveis de ambiente no painel do host
 - apontar o deploy para o branch `main`
+- start command no Render: `python -m uvicorn main:app --host 0.0.0.0 --port $PORT`
 
 ## 4. Validar `/health`
 
