@@ -2,62 +2,36 @@
 
 Backend leve em FastAPI para preparar sincronização incremental entre desktop, app futuro e banco em nuvem.
 
-## O que é
-
-Este projeto expõe um contrato mínimo de sincronização local com SQLite de desenvolvimento, pronto para evoluir depois para PostgreSQL/Supabase.
-
-## Instalação
+## Como rodar localmente
 
 ```powershell
 cd /d D:\ProjetosPython\RadarFinanceiro_Backend
 python -m venv .venv
 .venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-## Rodar localmente
-
-```powershell
+python -m pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-## Health check
+## Variáveis de ambiente
 
-Acesse:
+Use `RADAR_*` no `.env` local:
 
-```text
-GET /health
-```
+- `RADAR_ENV=development`
+- `RADAR_DATABASE_URL=sqlite:///./radar_sync_dev.db`
+- `RADAR_SECRET_KEY=change-me`
+- `RADAR_ALLOW_TEST_AUTH=true`
 
-Resposta esperada:
+## Rotas principais
 
-```json
-{"status":"ok","service":"Radar Financeiro Backend"}
-```
-
-## Testar push/pull
-
-### Push
-
-```http
-POST /sync/push
-```
-
-### Pull
-
-```http
-GET /sync/pull?user_id=usuario_teste&since=2026-06-10T10:00:00
-```
-
-### Status
-
-```http
-GET /sync/status
-```
+- `GET /`
+- `GET /health`
+- `GET /sync/status`
+- `POST /sync/push`
+- `GET /sync/pull`
 
 ## Avisos
 
-- Esta etapa não usa dados reais.
-- Esta etapa não está conectada ao desktop ainda.
-- Esta etapa não está conectada ao Android ainda.
-- Esta etapa não tem login real ainda.
+- Não usar `.env` real no GitHub.
+- Não subir banco real, logs ou segredos.
+- Esta etapa ainda é de teste e preparação.
+- Em produção futura, o ideal é PostgreSQL/Supabase com autenticação e HTTPS.
